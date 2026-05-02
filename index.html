@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelperID Premium UI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="phone-frame">
+        <!-- SCREEN 0: SPLASH SCREEN -->
+        <div class="screen active" id="splash">
+            <div class="splash-content">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-house-chimney-window"></i>
+                    </div>
+                    <h1>HalperID</h1>
+                    <p>Solusi Jasa<br>Rumah Tangga Terpercaya</p>
+                </div>
+                <div class="loader-wrapper">
+                    <div class="loader-bar"></div>
+                    <span>Memuat aplikasi...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYAR 1: HOME SERVICES -->
+        <div class="screen active" id="home">
+            <!-- Header Section -->
+            <header class="app-header">
+                <div class="user-welcome">
+                    <span>HalperID</span>
+                    <h3>Temukan Halper Anda</h3>
+                </div>
+                <div class="notif-badge"><i class="fa-solid fa-bell"></i></div>
+            </header>
+
+            <!-- Hero Banner -->
+            <div class="promo-card">
+                <div class="promo-content">
+                    <span class="tag">Promo Spesial</span>
+                    <h2>Diskon 20%</h2>
+                    <p>Khusus layanan Cleaning hari ini!</p>
+                </div>
+                <img src="https://cdn-icons-png.flaticon.com/512/2038/2038263.png" class="promo-img">
+            </div>
+
+            <!-- Service Selection Area -->
+            <div class="service-section">
+                <div class="section-header">
+                    <h4>Pilih Jenis Jasa</h4>
+                    <a href="#">Lihat Semua</a>
+                </div>
+                
+                <div class="service-list">
+                    <div class="service-btn active" onclick="select(this, 'Cleaning', 150000)">
+                        <div class="icon-box"><i class="fa-solid fa-broom"></i></div>
+                        <span>Cleaning</span>
+                    </div>
+                    <div class="service-btn" onclick="select(this, 'Cooking', 120000)">
+                        <div class="icon-box"><i class="fa-solid fa-utensils"></i></div>
+                        <span>Cooking</span>
+                    </div>
+                    <div class="service-btn" onclick="select(this, 'Laundry', 85000)">
+                        <div class="icon-box"><i class="fa-solid fa-shirt"></i></div>
+                        <span>Laundry</span>
+                    </div>
+                    <div class="service-btn" onclick="select(this, 'AC Service', 210000)">
+                        <div class="icon-box"><i class="fa-solid fa-wind"></i></div>
+                        <span>AC Service</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Bottom Card -->
+            <div class="floating-action-card">
+                <div class="selection-details">
+                    <h5 id="selected-name">Deep Cleaning</h5>
+                    <p id="selected-price">Rp 150.000 / 3 Jam</p>
+                </div>
+               <!-- Tombol ini sekarang terhubung ke halaman booking -->
+                <button class="btn-main" onclick="goToBooking()">
+                    PESAN SEKARANG <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- LAYAR 2: BOOKING FORM (Tersembunyi di awal) -->
+        <div class="screen" id="booking">
+            <header class="app-header">
+                <div class="back-btn" onclick="navigateTo('home')">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </div>
+                <h3 class="header-title">Detail Pesanan</h3>
+            </header>
+
+            <div class="booking-content">
+                <div class="booking-content">
+                    <!-- Tambahkan ID book-service-name dan book-service-price di sini -->
+                    <h2 id="book-service-name">Deep Cleaning</h2>
+                    <p id="book-service-price">Rp 150.000</p>
+                </div>
+
+                <div class="form-container">
+                    <div class="input-card">
+                        <label>Lokasi Layanan</label>
+                        <p class="val">Jl. Sudirman No.45</p>
+                        <button class="btn-gps" onclick="simulateGPS(this)">Ambil dari GPS</button>
+                    </div>
+                    <div class="input-card">
+                        <label>Waktu Kedatangan</label>
+                        <p class="val">Hari ini, 14:00 - 17:00</p>
+                    </div>
+                    <div class="input-card">
+                        <label>Catatan</label>
+                        <textarea placeholder="Fokus dapur & kamar anak..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="floating-action-card">
+                <!-- <button class="btn-main" onclick="alert('Lanjut ke Pembayaran!')"> -->
+                <button class="btn-main" onclick="processToTracking()">
+                    KONFIRMASI & BAYAR
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: LIVE TRACKING -->
+        <div class="screen" id="tracking">
+            <div class="map-container">
+                <!-- Simulasi Pin Bergerak -->
+                <div class="map-bg"></div>
+                <div class="user-location"><i class="fa-solid fa-house-user"></i></div>
+                <div class="helper-pin pulse" id="helper-marker">
+                    <i class="fa-solid fa-motorcycle"></i>
+                </div>
+                
+                <div class="map-overlay-top">
+                    <div class="status-card">
+                        <div class="status-dot"></div>
+                        <div class="status-text">
+                            <h4 id="tracking-status">Mbak Yuni sedang otw</h4>
+                            <p id="eta-text">8 menit lagi (2.1 km)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tracking-details">
+                <div class="helper-identity">
+                    <img src="https://i.pravatar.cc/100?u=yuni" class="helper-avatar">
+                    <div class="helper-info">
+                        <h4>Yuni Rahmawati</h4>
+                        <p><i class="fa-solid fa-star"></i> 4.8 (127 review)</p>
+                    </div>
+                    <div class="verified-badge"><i class="fa-solid fa-badge-check"></i> Verified</div>
+                </div>
+
+                <div class="action-grid">
+                    <button class="btn-action chat" onclick="alert('Membuka Chat...')">
+                        <i class="fa-solid fa-comment"></i> CHAT
+                    </button>
+                    <button class="btn-action video" onclick="alert('Memulai Video Call...')">
+                        <i class="fa-solid fa-video"></i> VIDEO CALL
+                    </button>
+                </div>
+                
+                <button class="btn-cancel" onclick="goBack()">BATAL PESANAN</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 4: PROGRESS MONITORING -->
+        <div class="screen" id="monitoring">
+            <header class="app-header">
+                <div class="back-btn" onclick="navigateTo('tracking')">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </div>
+                <h3 class="header-title">Live Monitoring</h3>
+                <div class="status-badge live">LIVE</div>
+            </header>
+
+            <div class="monitoring-content">
+                <!-- Progress Circular/Bar Section -->
+                <div class="progress-stats-card">
+                    <div class="stats-main">
+                        <div class="percentage-circle">
+                            <span id="mon-percent">65%</span>
+                        </div>
+                        <div class="stats-info">
+                            <h4>Pembersihan Dapur</h4>
+                            <p><i class="fa-solid fa-hourglass-half"></i> Sisa waktu: 45 menit</p>
+                        </div>
+                    </div>
+                    <div class="progress-track">
+                        <div class="track-fill" style="width: 65%;"></div>
+                    </div>
+                </div>
+
+                <!-- Before After Section -->
+                <div class="comparison-section">
+                    <h4>Bukti Progress Kerja</h4>
+                    <div class="comparison-grid">
+                        <div class="photo-card">
+                            <span class="label">Before</span>
+                            <img src="asset/before.jpg" alt="Kotor">
+                            <div class="photo-desc">Area Dapur (Kotor)</div>
+                        </div>
+                        <div class="photo-card">
+                            <span class="label after">After</span>
+                            <img src="asset/after.jpg" alt="Bersih">
+                            <div class="photo-desc">Area Dapur (Bersih)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Snippet -->
+                <div class="chat-bubble-preview">
+                    <div class="helper-thumb">
+                        <img src="https://i.pravatar.cc/100?u=yuni">
+                    </div>
+                    <div class="bubble-text">
+                        <strong>Mbak Yuni</strong>
+                        <p>"Dapur sudah selesai Bu! Lanjut ke ruang tamu."</p>
+                    </div>
+                </div>
+
+                <!-- Rating Sementara -->
+                <div class="temp-rating-card">
+                    <div class="rating-header">
+                        <span>Rating Sementara</span>
+                        <strong><i class="fa-solid fa-star"></i> 5/5</strong>
+                    </div>
+                    <div class="stars-row">
+                        <i class="fa-solid fa-star active"></i>
+                        <i class="fa-solid fa-star active"></i>
+                        <i class="fa-solid fa-star active"></i>
+                        <i class="fa-solid fa-star active"></i>
+                        <i class="fa-solid fa-star active"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Step Action -->
+            <div class="floating-action-card">
+                <button class="btn-main success" onclick="finishOrder()">
+                    SELESAIKAN PESANAN
+                </button>
+            </div>
+        </div>
+        
+        <!-- SCREEN 5: ORDER COMPLETE -->
+        <div class="screen" id="complete">
+            <div class="confetti-container" id="confetti"></div>
+            
+            <div class="complete-header">
+                <div class="success-icon-large">🎉</div>
+                <h2>Pesanan Selesai!</h2>
+                <p id="final-service-name">Deep Cleaning</p>
+            </div>
+
+            <div class="complete-content">
+                <!-- Video Hasil Akhir -->
+                <div class="video-section">
+                    <div class="section-title"><i class="fa-solid fa-video"></i> Video Hasil Akhir</div>
+                    <div class="video-placeholder">
+                        <i class="fa-solid fa-play"></i>
+                        <span>Play 15 detik video</span>
+                    </div>
+                </div>
+
+                <!-- Pembayaran Sisa -->
+                <div class="payment-summary">
+                    <div class="summary-row">
+                        <span>Total Biaya</span>
+                        <span>Rp 150.000</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>DP (Sudah dibayar)</span>
+                        <span>-Rp 75.000</span>
+                    </div>
+                    <div class="final-bill">
+                        <span>Bayar Sisa</span>
+                        <strong>Rp 75.000</strong>
+                    </div>
+                    <div class="payment-methods">
+                        <button class="btn-pay gopay">Bayar via Gopay</button>
+                        <button class="btn-pay transfer">Transfer Bank</button>
+                    </div>
+                </div>
+
+                <!-- Rating & Review -->
+                <div class="review-section">
+                    <h4>Beri Rating & Review</h4>
+                    <div class="star-rating" id="final-stars">
+                        <i class="fa-solid fa-star" data-val="1"></i>
+                        <i class="fa-solid fa-star" data-val="2"></i>
+                        <i class="fa-solid fa-star" data-val="3"></i>
+                        <i class="fa-solid fa-star" data-val="4"></i>
+                        <i class="fa-solid fa-star" data-val="5"></i>
+                    </div>
+                    <textarea placeholder="Tulis review Anda di sini..."></textarea>
+                </div>
+            </div>
+
+            <div class="floating-action-card">
+                <button class="btn-main" onclick="location.reload()">KEMBALI KE BERANDA</button>
+            </div>
+            <div class="back-btn" onclick="navigateTo('home')"></div>
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

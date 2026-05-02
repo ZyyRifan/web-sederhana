@@ -1,0 +1,470 @@
+:root {
+    --primary: #3b82f6;
+    --primary-dark: #1d4ed8;
+    --bg-light: #f1f5f9;
+    --glass: rgba(255, 255, 255, 0.9);
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+/* Phone Frame */
+.phone-frame {
+    width: 360px;
+    height: 740px;
+    background: var(--bg-light);
+    border-radius: 40px;
+    box-shadow: 0 50px 100px rgba(0,0,0,0.4);
+    overflow: hidden;
+    position: relative;
+    border: 8px solid #333;
+}
+
+#splash {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    position: absolute; /* Tambahkan ini */
+    width: 100%;        /* Tambahkan ini */
+    height: 100%;       /* Tambahkan ini */
+    transition: opacity 0.5s ease, visibility 0.5s; /* Tambahkan visibility */
+}
+
+/* Tambahkan class ini untuk benar-benar menghilangkan layer */
+#splash.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Splash Screen Styles */
+#splash {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; /* Pastikan di atas layar lain */
+}
+
+.splash-content {
+    text-align: center;
+    color: white;
+}
+
+.logo-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    animation: zoomInOut 2s ease-in-out infinite;
+}
+
+.logo-container h1 {
+    font-size: 2.2rem;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.logo-container p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Loader Bar Animation */
+.loader-wrapper {
+    margin-top: 50px;
+    width: 200px;
+}
+
+.loader-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-bar::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: loadingBar 2s infinite;
+}
+
+.loader-wrapper span {
+    font-size: 0.75rem;
+    margin-top: 10px;
+    display: block;
+    opacity: 0.7;
+}
+
+@keyframes zoomInOut {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes loadingBar {
+    100% { left: 100%; }
+}
+
+/* Header */
+.app-header {
+    padding: 30px 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-welcome h3 { margin: 0; font-size: 1.2rem; color: #1e293b; }
+.user-welcome span { font-size: 0.8rem; color: #64748b; }
+
+/* Promo Card */
+.promo-card {
+    margin: 0 20px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    padding: 20px;
+    border-radius: 25px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.promo-img { width: 80px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2)); }
+
+/* Service List */
+.service-section { padding: 25px 20px; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.section-header h4 { margin: 0; }
+.section-header a { font-size: 0.8rem; color: var(--primary); text-decoration: none; font-weight: bold; }
+
+.service-list { display: flex; flex-direction: column; gap: 12px; }
+
+.service-btn {
+    background: white;
+    padding: 15px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+}
+
+.icon-box {
+    width: 45px;
+    height: 45px;
+    background: #f1f5f9;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    color: #475569;
+}
+
+/* Active State */
+.service-btn.active {
+    border-color: var(--primary);
+    background: #eff6ff;
+    transform: translateX(10px);
+}
+
+.service-btn.active .icon-box {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Bottom Card */
+.floating-action-card {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    padding: 25px 20px 40px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+}
+
+.btn-main {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 18px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+    transition: 0.3s;
+}
+
+.btn-main:active { transform: scale(0.95); }
+
+/* booking form */
+/* Sembunyikan layar secara default */
+.screen {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #f1f5f9;
+}
+
+/* Tampilkan hanya yang memiliki class active */
+.screen.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Style tambahan untuk form */
+.input-card { background: white; margin: 15px 20px; padding: 15px; border-radius: 15px; }
+.input-card label { font-size: 0.8rem; color: #64748b; font-weight: bold; }
+.input-card .val { margin: 5px 0; font-weight: 500; }
+.btn-gps { border: 1px dashed #3b82f6; background: none; color: #3b82f6; padding: 5px 10px; border-radius: 8px; cursor: pointer; width: 100%; }
+
+
+/* Live Tracking Layout */
+.map-container {
+    height: 60%;
+    position: relative;
+    background: #e2e8f0;
+    overflow: hidden;
+}
+
+.map-bg {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.google.com/maps/d/u/0/thumbnail?mid=1_K_7_XfXf_XfXf_XfXf_XfXf_X'); /* Placeholder Map */
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.status-card {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Pins */
+.user-location { position: absolute; bottom: 40%; right: 30%; color: #ef4444; font-size: 1.5rem; }
+.helper-pin {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    background: var(--primary);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid white;
+    transition: all 0.5s linear;
+}
+
+/* Info & Actions */
+.tracking-details {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    padding: 25px 20px;
+    border-radius: 30px 30px 0 0;
+    box-sizing: border-box;
+}
+
+.helper-identity { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+.helper-avatar { width: 55px; height: 55px; border-radius: 15px; object-fit: cover; }
+.helper-info h4 { margin: 0; font-size: 1.1rem; }
+.helper-info p { margin: 0; font-size: 0.85rem; color: #f59e0b; font-weight: bold; }
+
+.action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+.btn-action {
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.btn-action.chat { background: #eff6ff; color: #3b82f6; }
+.btn-action.video { background: #f0fdf4; color: #22c55e; }
+
+.btn-cancel {
+    width: 100%;
+    background: none;
+    border: 1px solid #fecaca;
+    color: #ef4444;
+    padding: 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* SCREEN 4 */
+/* Monitoring Screen Styles */
+.status-badge.live {
+    background: #fee2e2;
+    color: #ef4444;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.progress-stats-card {
+    background: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+}
+
+.stats-main { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+
+.percentage-circle {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #eff6ff;
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.progress-track { background: #f1f5f9; height: 8px; border-radius: 4px; overflow: hidden; }
+.track-fill { background: var(--primary); height: 100%; transition: width 1s ease-in-out; }
+
+/* Before After Grid */
+.comparison-section { padding: 0 20px; margin-bottom: 30px; }
+.comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+
+.photo-card { background: white; border-radius: 15px; overflow: hidden; position: relative; }
+.photo-card img { width: 100%; height: 100px; object-fit: cover; }
+.photo-card .label { 
+    position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.6); 
+    color: white; font-size: 0.6rem; padding: 2px 8px; border-radius: 4px;
+}
+.photo-card .label.after { background: #22c55e; }
+.photo-desc { font-size: 0.7rem; padding: 8px; text-align: center; color: #64748b; }
+
+/* Chat Bubble Preview */
+.chat-bubble-preview {
+    margin: 20px;
+    background: #f8fafc;
+    border-radius: 15px;
+    padding: 12px;
+    display: flex;
+    gap: 12px;
+    border-left: 4px solid var(--primary);
+}
+.helper-thumb img { width: 40px; height: 40px; border-radius: 10px; }
+.bubble-text strong { font-size: 0.8rem; display: block; }
+.bubble-text p { font-size: 0.8rem; margin: 2px 0 0; color: #475569; font-style: italic; }
+
+/* Temp Rating Card */
+.temp-rating-card {
+    margin: 20px;
+    background: linear-gradient(to right, #ffffff, #fffbeb);
+    padding: 15px;
+    border-radius: 20px;
+    border: 1px solid #fef3c7;
+}
+.rating-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; }
+.stars-row { color: #fbbf24; font-size: 1.2rem; display: flex; gap: 5px; }
+
+.btn-main.success { background: #22c55e; box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3); }
+
+ /* SCREEN 5 */
+ /* Order Complete Styles */
+.complete-header { text-align: center; padding: 40px 20px; }
+.success-icon-large { font-size: 4rem; margin-bottom: 10px; animation: bounce 1s infinite; }
+.complete-header h2 { margin: 0; color: #1e293b; }
+
+.video-placeholder {
+    background: #000;
+    height: 180px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    gap: 10px;
+    margin: 10px 20px;
+}
+
+.payment-summary {
+    background: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+}
+.summary-row { display: flex; justify-content: space-between; font-size: 0.9rem; color: #64748b; margin-bottom: 5px; }
+.final-bill { display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px dashed #e2e8f0; margin-top: 10px; font-size: 1.1rem; color: #1e293b; }
+.final-bill strong { color: var(--primary); }
+
+.payment-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+.btn-pay { border: none; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer; }
+.btn-pay.gopay { background: #eff6ff; color: #3b82f6; }
+.btn-pay.transfer { background: #f1f5f9; color: #475569; }
+
+.review-section { padding: 0 20px 120px; }
+.star-rating { display: flex; gap: 10px; font-size: 1.8rem; color: #e2e8f0; margin-bottom: 15px; justify-content: center; }
+.star-rating i.active { color: #fbbf24; }
+
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
