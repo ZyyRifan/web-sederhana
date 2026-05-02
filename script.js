@@ -176,7 +176,7 @@ function startMonitoring() {
 // (Update fungsi moveHelper sebelumnya)
 function moveHelper() {
     const marker = document.getElementById('helper-marker');
-    let minutes = 8;
+    let minutes = 1;
     
     const movement = setInterval(() => {
         if (minutes <= 1) {
